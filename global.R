@@ -36,12 +36,6 @@ colanzeige <- "light-blue"
 # Daten Modelle laden
 load("Modelle/raTotTG.RData")
 load("Modelle/raTotFG.RData")
-load("Modelle/raTotTG_alt.RData")
-load("Modelle/raTotFG_alt.RData")
-load("Modelle/raTotTG_PA.RData")
-load("Modelle/raTotFG_PA.RData")
-load("Modelle/raTotTG_alt_PA.RData")
-load("Modelle/raTotFG_alt_PA.RData")
 
 # Daten Bestehende Infrastruktur laden
 load("BestehendeInfrastruktur/fgras.RData")

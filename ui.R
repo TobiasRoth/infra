@@ -4,15 +4,14 @@
 
 header <- dashboardHeader(
   title = "Ökologische Infrastruktur Mittelland (Version 0.4)",
-  titleWidth =450
+  titleWidth = 450
 )
 
 sidebar <- dashboardSidebar(
   br(),
   tags$b("Lebensraumtyp auswählen:"),
   selectInput(inputId = "Lebensraumtyp", label = NA,
-              choices = c("Trockengebiete", "Trockengebiete_alt", "Trockengebiete_PA", "Trockengebiete_alt_PA",
-                          "Feuchtgebiete", "Feuchtgebiete_alt", "Feuchtgebiete_PA", "Feuchtgebiete_alt_PA"),
+              choices = c("Trockengebiete", "Feuchtgebiete"),
               selectize = FALSE, width = "100%", selected = "Feuchtgebiete"),
   tags$hr(),
   tags$b("Auswahl Analysetools:"),

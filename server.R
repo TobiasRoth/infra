@@ -6,72 +6,28 @@ server <- function(input, output, session) {
   
   # Handling of session data
   data <- reactive({
-    if(input$Lebensraumtyp == "Feuchtgebiete") {
+    if (input$Lebensraumtyp == "Feuchtgebiete") {
       ras <- raTotFG
       infra <- fg
       infraras <- fgras
       vern <- fgvern
     }
-    if(input$Lebensraumtyp == "Trockengebiete") {
+    if (input$Lebensraumtyp == "Trockengebiete") {
       ras <- raTotTG
       infra <- tg
       infraras <- tgras
       vern <- tgvern
     }
-    if(input$Lebensraumtyp == "Feuchtgebiete_alt") {
-      ras <- raTotFG_alt
-      infra <- fg
-      infraras <- fgras
-      vern <- fgvern
-    }
-    if(input$Lebensraumtyp == "Trockengebiete_alt") {
-      ras <- raTotTG_alt
-      infra <- tg
-      infraras <- tgras
-      vern <- tgvern
-    }
-    if(input$Lebensraumtyp == "Feuchtgebiete_PA") {
-      ras <- raTotFG_PA
-      infra <- fg
-      infraras <- fgras
-      vern <- fgvern
-    }
-    if(input$Lebensraumtyp == "Trockengebiete_PA") {
-      ras <- raTotTG_PA
-      infra <- tg
-      infraras <- tgras
-      vern <- tgvern
-    }
-    if(input$Lebensraumtyp == "Feuchtgebiete_alt_PA") {
-      ras <- raTotFG_alt_PA
-      infra <- fg
-      infraras <- fgras
-      vern <- fgvern
-    }
-    if(input$Lebensraumtyp == "Trockengebiete_alt_PA") {
-      ras <- raTotTG_alt_PA
-      infra <- tg
-      infraras <- tgras
-      vern <- tgvern
-    }
-    
+
     # Nur minimale Distanz anzeigen
-    if(input$distberechnen) {
-      # ttt <- buffer(infraras, input$bufwidth, dissolve = TRUE)
-      # ras[is.na(values(ttt))] <- NA
-      tt <- as.data.frame(coordinates(infra))
-      names(tt) <- c("x", "y")
-      coordinates(tt) <- ~ x + y
-      tt@proj4string <- infra@proj4string
-      tt <- spTransform(tt, ras@crs)
-      tt <- buffer(tt, input$bufwidth)
-      ras <- mask(ras, tt)
+    if (input$distberechnen) {
+      ras[getValues(infraras) > input$bufwidth] <- NA
     }  
     # Nur beste x% anzeigen
-    if(input$bestberechnen) {
+    if (input$bestberechnen) {
       ras[!is.na(values(ras)) & values(ras) < quantile(values(ras), prob = 1 - (input$tquant/100), na.rm = TRUE)] <- NA
     }
-    list(ras=ras, infra=infra, infraras = infraras, vern = vern)
+    list(ras = ras, infra = infra, infraras = infraras, vern = vern)
   })
   
   # Angaben für Output
@@ -110,7 +66,7 @@ server <- function(input, output, session) {
   observe({
     proxy <- leafletProxy("mymap") %>% clearShapes()
     addPolylines(proxy, data = perimeter, color = "black", weight = 3)
-    if(input$bestinfra) addPolygons(proxy, data = data()$infra, stroke = FALSE, fillColor = "red", fillOpacity = 1)
+    if(input$bestinfra) addPolygons(proxy, data = data()$infra, stroke = FALSE, fillColor = c("red", "green"), fillOpacity = 1)
     if(input$buffer) {
       vernb <- spTransform(data()$vern, CRS("+init=epsg:21781"))
       vernb <- buffer(vernb, 500)
