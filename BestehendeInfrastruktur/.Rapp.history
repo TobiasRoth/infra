@@ -1,0 +1,3 @@
+load("/Users/roth/Documents/Projekte/H_W/Schreibtisch_Ro/1449_Potentialgebiete_Kt_BE/App/BestehendeInfrastruktur/fgras.RData")
+plot(fgras)
+plot(fgras)
