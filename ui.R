@@ -1,9 +1,17 @@
 # POTENTIALGEBIETE MITTELLAND
 # roth@hintermannweber.ch
-# 21.05.2017
+# 27.10.2017
 
 header <- dashboardHeader(
-  title = "Ökologische Infrastruktur Mittelland (Version 0.4)",
+  title = "Ökologische Infrastruktur Mittelland (Version 1.0)", 
+  tags$li(a(href = 'Hilfe.pdf', icon("file-pdf-o"), title = "Hilfe"), class = "dropdown"),
+  tags$li(a(href = 'mailto:schlup@hintermannweber.ch?Subject=Oekologische%20Infrastruktur%20Mittelland', icon("envelope"), title = "Mail schreiben"), class = "dropdown"),
+  tags$li(a(href = 'https://github.com/TobiasRoth/infra', icon("github"), title = "Source-Code"), class = "dropdown"),
+  tags$li(a(href = 'http://www.hintermannweber.ch', "Konzept: Hintermann & Weber AG", title = "Konzept"), class = "dropdown"),
+  # tags$li(a(href = 'http://www.hintermannweber.ch', 
+  #           img(src = 'logo.png',title = "Company Home", height = "30px"),
+  #           style = "padding-top:10px; padding-bottom:10px;"),
+  #         class = "dropdown"),
   titleWidth = 450
 )
 
@@ -12,7 +20,7 @@ sidebar <- dashboardSidebar(
   tags$b("Lebensraumtyp auswählen:"),
   selectInput(inputId = "Lebensraumtyp", label = NA,
               choices = c("Trockengebiete", "Feuchtgebiete"),
-              selectize = FALSE, width = "100%", selected = "Feuchtgebiete"),
+              selectize = FALSE, width = "100%", selected = "Trockengebiete"),
   tags$hr(),
   tags$b("Auswahl Analysetools:"),
   br(),br(),
