@@ -66,7 +66,7 @@ server <- function(input, output, session) {
   observe({
     proxy <- leafletProxy("mymap") %>% clearShapes()
     addPolylines(proxy, data = perimeter, color = "black", weight = 3)
-    if(input$bestinfra) addPolygons(proxy, data = data()$infra, stroke = FALSE, fillColor = c("red", "green"), fillOpacity = 1)
+    if(input$bestinfra) addPolygons(proxy, data = data()$infra, stroke = FALSE, fillColor = as.character(data()$infra@data$col), fillOpacity = 1)
     if(input$buffer) {
       vernb <- spTransform(data()$vern, CRS("+init=epsg:21781"))
       vernb <- buffer(vernb, 500)
