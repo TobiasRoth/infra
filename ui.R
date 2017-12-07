@@ -1,19 +1,18 @@
 # POTENTIALGEBIETE MITTELLAND
 # roth@hintermannweber.ch
-# 27.10.2017
 
 header <- dashboardHeader(
-  title = "Ökologische Infrastruktur Mittelland (Version 1.0)", 
-  tags$li(a(href = 'Hilfe.pdf', icon("file-pdf-o"), title = "Hilfe"), class = "dropdown"),
+  title = "Potenzialflächenerk. Ökol. Infrastruktur Mittelland (v1.0)", 
+  tags$li(a(href = '1449 Benutzungsanleitung Hinweistool v1.pdf', icon("file-pdf-o"), title = "Hilfe"), class = "dropdown"),
   tags$li(a(href = 'mailto:schlup@hintermannweber.ch?Subject=Oekologische%20Infrastruktur%20Mittelland', icon("envelope"), title = "Mail schreiben"), class = "dropdown"),
   tags$li(a(href = 'https://github.com/TobiasRoth/infra', icon("github"), title = "Source-Code"), class = "dropdown"),
-  tags$li(a("Auftraggeber: Naturschutzfachstellen AG, BE, ZH", title = "Die Auftraggeber sind die Naturschutzfachstellen der Kantone Aargau, Bern und Zürich."), class = "dropdown"),
+  tags$li(a("Auftraggeber: Naturschutzfachst. AG, BE, ZH", title = "Die Auftraggeber sind die Naturschutzfachstellen der Kantone Aargau, Bern und Zürich."), class = "dropdown"),
   tags$li(a(href = 'http://www.hintermannweber.ch', "Konzept: Hintermann & Weber AG", title = "Konzept"), class = "dropdown"),
   # tags$li(a(href = 'http://www.hintermannweber.ch', 
   #           img(src = 'logo.png',title = "Company Home", height = "30px"),
   #           style = "padding-top:10px; padding-bottom:10px;"),
   #         class = "dropdown"),
-  titleWidth = 450
+  titleWidth = 560
 )
 
 sidebar <- dashboardSidebar(
@@ -76,7 +75,7 @@ body <- dashboardBody(
     tabItem(tabName = "vernetzen",
             fluidRow(
               box(width = 6, background = coltool,
-                  tags$b("Potentialflächen so auswählen, dass bestehende Infrastruktur besser vernetzt wird:"),
+                  tags$b("Potentialflächen so auswählen, dass die bestehende Infrastruktur besser vernetzt wird:"),
                   uiOutput("textinfra", container = tags$h5)
               ),
               box(background = coltool, width = 3, 
