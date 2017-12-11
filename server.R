@@ -48,10 +48,16 @@ server <- function(input, output, session) {
   
   # Hintergrundkarte in Leaflet ändern
   observe({
-    if(input$tiles == "Luftbild") ref <- "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-    if(input$tiles == "Karte") ref <- "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    if(input$tiles == "Luftbild") {
+      ref <- "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+      attri <- '&copy; <a href="http://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/0">World Imagery</a>'
+    }
+    if(input$tiles == "Karte") {
+      ref <- "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      attri <- '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap-Mitwirkende</a>'
+    }
     proxy <- leafletProxy("mymap") %>% clearTiles() 
-    addTiles(proxy, urlTemplate = ref)
+    addTiles(proxy, urlTemplate = ref, attribution = attri)
   })
   
   # Modell in Leaflet zeichnen
